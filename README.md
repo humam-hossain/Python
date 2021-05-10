@@ -1,2 +1,1 @@
-# Python-notes
-  # CheetSheet
+# Notes on python .py
