@@ -16,7 +16,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
-from FarizaUi3 import *
+# from FarizaUi3 import *
 
 class enginex:
 
@@ -155,10 +155,10 @@ startExecution = MainThread()
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.ui = Ui_Fariza()
-        self.ui.setupUi(self)
-        self.ui.Run_Button.clicked.connect(self.startTask)
-        self.ui.Exit_button.clicked.connect(self.close)
+        #self.ui = Ui_Fariza()
+        #self.ui.setupUi(self)
+        #self.ui.Run_Button.clicked.connect(self.startTask)
+        #self.ui.Exit_button.clicked.connect(self.close)
 
     def startTask(self):
         startExecution.start()
