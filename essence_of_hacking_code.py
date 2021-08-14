@@ -44,14 +44,14 @@ except ImportError:
     print('matplotlib is not installed! Plot wont be shown')
 
 
-if len(sys.argv) < 4:
-    print('Too few arguments specified!')
-    print('Usage: ./problem24.py <source_numbers> ... <target_number>')
-    exit(1)
+# if len(sys.argv) < 4:
+#     print('Too few arguments specified!')
+#     print('Usage: ./problem24.py <source_numbers> ... <target_number>')
+#     exit(1)
 
 # User's command line arguments
-target_number = float(sys.argv[-1:][0])
-src_numbers = sys.argv[1:-1]
+target_number = float(24)
+src_numbers = [1,3,4,8] #sys.argv[1:-1]
 
 symbol_set = ['+','-','/','*','(',')','/(','*(','-(','+(',')/',')*',')+',')-']
 permutation_list = []
@@ -72,7 +72,6 @@ count = 0
 for symbols in product(symbol_set, repeat=len(src_numbers)+1):
 
     first_symbol = symbols[0][:1][0]
-
     if first_symbol == '-':
         continue
 
@@ -86,9 +85,9 @@ for symbols in product(symbol_set, repeat=len(src_numbers)+1):
         # Add digits to each symbol to form final expression
         for i, j in zip(symbols, numbers):
             current_expression += i + str(float(j))
-
+        
         current_expression += symbols[-1:][0]
-
+        # print(current_expression)
         try:
             answer = eval(current_expression)
         except Exception as e:
