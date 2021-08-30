@@ -61,3 +61,21 @@ print("\n\nseperating version string components")
 version_info = version.split(",")
 for part_no, version_info_part in enumerate(version_info):
     print(f"version part {part_no}: {version_info_part.strip()}")
+
+# multi line string
+long_string = """   Name            Age
+                    Humam           20
+                    Zulkar          22
+                    Nazib           21
+                    Mahfuz          20
+"""
+
+listing = list()
+
+for line in long_string.splitlines():
+    dictionary = dict()
+    if line.split()[0] != "Name":
+        dictionary[line.split()[0]] = line.split()[1]
+        listing.append(dictionary)
+
+print(listing)
