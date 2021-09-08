@@ -16,7 +16,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
-# from FarizaUi3 import *
+from FarizaUi3 import *
 
 class enginex:
 
@@ -89,62 +89,62 @@ class MainThread(QThread):
 
             elif 'sleep' in self.command:
                 sys.exit()
-            # elif 'navigate' in self.command:
-            #     cap = cv2.VideoCapture(0)
-            #     yellow_lower = np.array([22, 93, 0])
-            #     yellow_upper = np.array([45, 255, 255])
-            #     prev_y = 0
+            elif 'navigate' in self.command:
+                cap = cv2.VideoCapture(0)
+                yellow_lower = np.array([22, 93, 0])
+                yellow_upper = np.array([45, 255, 255])
+                prev_y = 0
 
-            #     while True:
-            #         ret, frame = cap.read()
-            #         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-            #         mask = cv2.inRange(hsv, yellow_lower, yellow_upper)
-            #         contours, hierarchy = cv2.findContours(
-            #             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                while True:
+                    ret, frame = cap.read()
+                    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+                    mask = cv2.inRange(hsv, yellow_lower, yellow_upper)
+                    contours, hierarchy = cv2.findContours(
+                        mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-            #         for c in contours:
-            #             area = cv2.contourArea(c)
-            #             if area > 300:
-            #                 x, y, w, h = cv2.boundingRect(c)
-            #                 cv2.rectangle(
-            #                     frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-            #                 if y < prev_y:
-            #                     pyautogui.press('down')
-            #                 prev_y = y
+                    for c in contours:
+                        area = cv2.contourArea(c)
+                        if area > 300:
+                            x, y, w, h = cv2.boundingRect(c)
+                            cv2.rectangle(
+                                frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+                            if y < prev_y:
+                                pyautogui.press('down')
+                            prev_y = y
 
-            #         cv2.imshow('Fariza v1.0 scrolling cam', frame)
-            #         if cv2.waitKey(10) == ord('q'):
-            #             break
-            #     cap.release()
-            #     cv2.destroyAllWindows()
+                    cv2.imshow('Fariza v1.0 scrolling cam', frame)
+                    if cv2.waitKey(10) == ord('q'):
+                        break
+                cap.release()
+                cv2.destroyAllWindows()
 
-            # elif 'motion' in self.command:
-            #     engine.say('Opening motion camera')
-            #     cam = cv2.VideoCapture(0)
-            #     while cam.isOpened():
-            #         ret, frame1 = cam.read()
-            #         ret, frame2 = cam.read()
-            #         diff = cv2.absdiff(frame1, frame2)
-            #         gray = cv2.cvtColor(diff, cv2.COLOR_RGB2GRAY)
-            #         blur = cv2.GaussianBlur(gray, (5, 5), 0)
-            #         _, thresh = cv2.threshold(blur, 20, 255, cv2.THRESH_BINARY)
-            #         dilated = cv2.dilate(thresh, None, iterations=3)
-            #         contours, _ = cv2.findContours(
-            #             dilated, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            elif 'motion' in self.command:
+                engine.say('Opening motion camera')
+                cam = cv2.VideoCapture(0)
+                while cam.isOpened():
+                    ret, frame1 = cam.read()
+                    ret, frame2 = cam.read()
+                    diff = cv2.absdiff(frame1, frame2)
+                    gray = cv2.cvtColor(diff, cv2.COLOR_RGB2GRAY)
+                    blur = cv2.GaussianBlur(gray, (5, 5), 0)
+                    _, thresh = cv2.threshold(blur, 20, 255, cv2.THRESH_BINARY)
+                    dilated = cv2.dilate(thresh, None, iterations=3)
+                    contours, _ = cv2.findContours(
+                        dilated, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-            #         for c in contours:
-            #             if cv2.contourArea(c) < 5000:
-            #                 continue
-            #             x, y, w, h = cv2.boundingRect(c)
-            #             cv2.rectangle(frame1, (x, y),
-            #                           (x+w, y+h), (0, 255, 0), 2)
+                    for c in contours:
+                        if cv2.contourArea(c) < 5000:
+                            continue
+                        x, y, w, h = cv2.boundingRect(c)
+                        cv2.rectangle(frame1, (x, y),
+                                      (x+w, y+h), (0, 255, 0), 2)
 
-            #             # winsound.Beep(500,200)
-            #         cv2.imshow('Fariza v1.0 motion cam', frame1)
-            #         if cv2.waitKey(10) == ord('q'):
-            #             break
-            #     cam.release()
-            #     cv2.destroyAllWindows()
+                        # winsound.Beep(500,200)
+                    cv2.imshow('Fariza v1.0 motion cam', frame1)
+                    if cv2.waitKey(10) == ord('q'):
+                        break
+                cam.release()
+                cv2.destroyAllWindows()
 
             # engine.runAndWait()
 
@@ -155,10 +155,10 @@ startExecution = MainThread()
 class Main(QMainWindow):
     def __init__(self):
         super().__init__()
-        #self.ui = Ui_Fariza()
-        #self.ui.setupUi(self)
-        #self.ui.Run_Button.clicked.connect(self.startTask)
-        #self.ui.Exit_button.clicked.connect(self.close)
+        self.ui = Ui_Fariza()
+        self.ui.setupUi(self)
+        self.ui.Run_Button.clicked.connect(self.startTask)
+        self.ui.Exit_button.clicked.connect(self.close)
 
     def startTask(self):
         startExecution.start()
