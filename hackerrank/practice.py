@@ -1,13 +1,16 @@
 #!/bin/python3
 
-def student_info(*args, **kwargs):
-    print(args)
-    print(kwargs)
+x = "global x"
 
-courses = ['Mathematics', 'Physics']
-info = {'name': 'Humam', 'age': 20}
+def outer():
+    x = "outer x"
 
-print(*courses)
-print(*info)
-print()
-student_info(*courses, **info)
+    def inner():
+        x = "inner x"
+        print(x)
+    
+    inner()
+    print(x)
+
+outer()
+print(x)
