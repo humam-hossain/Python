@@ -1,20 +1,23 @@
+#!/bin/python3
+
 import cv2 as cv
 
-img = cv.imread("/home/painkiller/github_repo/Python/opencv/Photos/cat_larges.jpg")
+img = cv.imread("/home/painkiller/github_repo/Python/opencv/Photos/cat.jpg")
 
 cv.imshow("Cat", img)
 
 cv.waitKey(0)
 
 # Reading videos
-# capture = cv.VideoCapture("/home/painkiller/github_repo/Python/opencv/Videos/dog.mp4")
+capture = cv.VideoCapture("/home/painkiller/github_repo/Python/opencv/Videos/dog.mp4")
 
-# while True:
-#     isTrue, frame = capture.read()
-#     cv.imshow("Video", frame)
+while True:
+    isTrue, frame = capture.read()
 
-#     if cv.waitKey(20) & 0xFF ==ord('d'):
-#         break
+    cv.imshow("Video", frame)
 
-# capture.release()
-# cv.destroyAllWindows()
+    if cv.waitKey(20) & 0xFF==ord('d'):
+        break
+
+capture.release()
+cv.destroyAllWindows()
