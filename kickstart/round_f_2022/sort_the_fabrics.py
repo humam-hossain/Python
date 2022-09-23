@@ -1,3 +1,5 @@
+from operator import itemgetter
+
 def every_test(n):
     result = 0
     fabrics = list()
@@ -18,7 +20,7 @@ def every_test(n):
         fabrics.append(fabric)
     print(fabrics)
     
-    print(sorted(fabrics, key=lambda d: d["durability"]))
+    print(sorted(fabrics, key=itemgetter("durability", "id")))
 
     return result
 
