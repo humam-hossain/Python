@@ -27,32 +27,32 @@ Now, write a python program to design a smart garbage collection system that has
 objects and properties.
 
 User:
-- Name
-- Address
-- Can receive warning message and display it
-- Can check the total bill and display it
++ Name
++ Address
++ Can receive warning message and display it
++ Can check the total bill and display it
 
 Billing-info:
-- One biodegradable garbage item 0 tk.
-- One recyclable garbage item 2 tk.
-- One non-recyclable garbage item 5 tk.
-- Has a billing catalog
++ One biodegradable garbage item 0 tk.
++ One recyclable garbage item 2 tk.
++ One non-recyclable garbage item 5 tk.
++ Has a billing catalog
 
 Source-bin:
-- Receives garbage.
-- Has fixed capacity (e.g. can contain 10 garbage items at a time).
-- Outputs garbage and sends to GMP-bin
-- As soon as one item gets sucked by the tunnel; source-bin updates itself to receive one more new item.
-- As the source-bin tends to fill; it sends a warning message to the user - “Reduce garbage production”.
-- Can receive warning messages from other bins.
-- For any warning message it receives; it sends a warning message to the user - “Reduce garbage production”.
++ Receives garbage.
++ Has fixed capacity (e.g. can contain 10 garbage items at a time).
++ As the source-bin tends to fill; it sends a warning message to the user - “Reduce garbage production”.
++ Outputs garbage and sends to GMP-bin
++ As soon as one item gets sucked by the tunnel; source-bin updates itself to receive one more new item.
++ Can receive warning messages from other bins.
++ For any warning message it receives; it sends a warning message to the user - “Reduce garbage production”.
 
 GMP-bin:
-- Receives garbage
-- Has fixed capacity (e.g. can contain 10 garbage items at a time).
++ Receives garbage
++ Has fixed capacity (e.g. can contain 10 garbage items at a time).
++ As the GMP-bin tends to fill; it sends a warning message to source-bin - “Warning from GMP-bin”.
 - Outputs garbage and allocates them 2 other bins based on their type
 - As soon as one item gets passed to the following bins; GMP-bin updates itself to receive one more new item.
-- As the GMP-bin tends to fill; it sends a warning message to source-bin - “Warning from GMP-bin”.
 - Can receive warning messages from other bins.
 - For any warning message it receives; it sends a warning message to source-bin - “Warning from GMP-bin”.
 - For a given user, update the billing catalog according to the billing-info.
